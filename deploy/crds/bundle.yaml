@@ -97,25 +97,7 @@ spec:
                             type: string
                           sourceRef:
                             description: SourceRef allows you to override the source from which the value will pulled from.
-                            maxProperties: 1
                             properties:
-                              generatorRef:
-                                description: GeneratorRef points to a generator custom resource in
-                                properties:
-                                  apiVersion:
-                                    default: generators.external-secrets.io/v1alpha1
-                                    description: Specify the apiVersion of the generator resource
-                                    type: string
-                                  kind:
-                                    description: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
-                                    type: string
-                                  name:
-                                    description: Specify the name of the generator resource
-                                    type: string
-                                required:
-                                  - kind
-                                  - name
-                                type: object
                               storeRef:
                                 description: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
                                 properties:
@@ -128,6 +110,8 @@ spec:
                                 required:
                                   - name
                                 type: object
+                            required:
+                              - storeRef
                             type: object
                         required:
                           - remoteRef
@@ -3710,25 +3694,7 @@ spec:
                         type: string
                       sourceRef:
                         description: SourceRef allows you to override the source from which the value will pulled from.
-                        maxProperties: 1
                         properties:
-                          generatorRef:
-                            description: GeneratorRef points to a generator custom resource in
-                            properties:
-                              apiVersion:
-                                default: generators.external-secrets.io/v1alpha1
-                                description: Specify the apiVersion of the generator resource
-                                type: string
-                              kind:
-                                description: Specify the Kind of the resource, e.g. Password, ACRAccessToken etc.
-                                type: string
-                              name:
-                                description: Specify the name of the generator resource
-                                type: string
-                            required:
-                              - kind
-                              - name
-                            type: object
                           storeRef:
                             description: SecretStoreRef defines which SecretStore to fetch the ExternalSecret data.
                             properties:
@@ -3741,6 +3707,8 @@ spec:
                             required:
                               - name
                             type: object
+                        required:
+                          - storeRef
                         type: object
                     required:
                       - remoteRef

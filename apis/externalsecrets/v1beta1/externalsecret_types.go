@@ -194,7 +194,7 @@ type ExternalSecretData struct {
 
 	// SourceRef allows you to override the source
 	// from which the value will pulled from.
-	SourceRef *SourceRef `json:"sourceRef,omitempty"`
+	SourceRef *StoreSourceRef `json:"sourceRef,omitempty"`
 }
 
 // ExternalSecretDataRemoteRef defines Provider data location.
@@ -269,7 +269,7 @@ type ExternalSecretDataFromRemoteRef struct {
 	// a specific SecretStore.
 	// When sourceRef points to a generator Extract or Find is not supported.
 	// The generator returns a static map of values
-	SourceRef *SourceRef `json:"sourceRef,omitempty"`
+	SourceRef *StoreGeneratorSourceRef `json:"sourceRef,omitempty"`
 }
 
 type ExternalSecretRewrite struct {
@@ -338,11 +338,18 @@ type ExternalSecretSpec struct {
 	DataFrom []ExternalSecretDataFromRemoteRef `json:"dataFrom,omitempty"`
 }
 
-// SourceRef allows you to override the source
+// StoreSourceRef allows you to override the SecretStore source
+// from which the secret will be pulled from.
+// You can define at maximum one property.
+type StoreSourceRef struct {
+	SecretStoreRef SecretStoreRef `json:"storeRef"`
+}
+
+// StoreGeneratorSourceRef allows you to override the source
 // from which the secret will be pulled from.
 // You can define at maximum one property.
 // +kubebuilder:validation:MaxProperties=1
-type SourceRef struct {
+type StoreGeneratorSourceRef struct {
 	// +optional
 	SecretStoreRef *SecretStoreRef `json:"storeRef,omitempty"`
 
