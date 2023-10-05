@@ -101,3 +101,4 @@ Uninstall the helm release using the delete command.
 ```bash
 helm delete external-secrets --namespace external-secrets
 ```
+docs
